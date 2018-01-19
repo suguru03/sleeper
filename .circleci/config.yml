@@ -1,0 +1,20 @@
+version: 2
+jobs:
+  subscribe:
+    docker:
+      - image: node:8
+    steps:
+      - run: node index.js
+
+workflows:
+  version: 2
+  subscribe:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - subscribe
