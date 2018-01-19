@@ -3,6 +3,8 @@
 const Aigle = require('aigle');
 const puppeteer = require('puppeteer');
 
+Object.assign(exports, { getArticles });
+
 const url = 'https://www.google.co.jp/search?tbm=nws&q=%E7%9D%A1%E7%9C%A0%E3%80%80%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9';
 const words = [
   '不足',
@@ -11,7 +13,7 @@ const words = [
 ];
 const re = new RegExp(words.join('|'));
 
-(async () => {
+async function getArticles() {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
@@ -26,13 +28,7 @@ const re = new RegExp(words.join('|'));
   const result = await Aigle.doWhilst(iterator, tester);
   await browser.close();
 
-  if (!result.length) {
-    return console.log('Not found');
-  }
-  const [{ href, innerText }] = result;
-  const text = `${innerText}\n${href}`;
-  console.log(text);
-  return text;
+  return result;
 
   async function getResult(url) {
     await page.goto(url);
@@ -46,5 +42,4 @@ const re = new RegExp(words.join('|'));
       return result;
     });
   }
-})();
-
+}
