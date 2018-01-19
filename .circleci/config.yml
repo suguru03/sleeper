@@ -8,7 +8,7 @@ jobs:
 
 workflows:
   version: 2
-  subscribe:
+  scheduled-workflow:
     triggers:
       - schedule:
           cron: "0 0 * * *"
