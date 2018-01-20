@@ -8,8 +8,16 @@ Object.assign(exports, { getArticles });
 const url = 'https://www.google.co.jp/search?tbm=nws&q=%E7%9D%A1%E7%9C%A0%E3%80%80%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9';
 const words = [
   '不足',
-  '病気',
-  '原因'
+  '病',
+  '原因',
+  '血圧',
+  '死',
+  '症',
+  '質',
+  '負',
+  '免疫',
+  '悪',
+  'ミス'
 ];
 const re = new RegExp(words.join('|'));
 
