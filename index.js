@@ -9,7 +9,7 @@ const { getArticles } = require('./scrape');
 (async () => {
   console.log('Getting articles...');
   const list = await getArticles();
-  console.log('all list', list);
+  console.log(list);
   const { href, innerText } = _.sample(list);
   const text = `今日の記事:「${innerText}」\n${href}`;
   console.log(text);

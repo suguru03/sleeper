@@ -14,7 +14,7 @@ const words = [
 const re = new RegExp(words.join('|'));
 
 async function getArticles() {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
   const page = await browser.newPage();
 
   // set logal storage
