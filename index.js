@@ -5,7 +5,6 @@ const request = require('request-promise');
 
 const uri = process.env.SLACK_URI || require('./config').slack.uri;
 const { getArticles } = require('./scrape');
-console.log('SLACK_URI', !!process.env.SLACK_URI);
 
 (async () => {
   console.log('Getting articles...');

@@ -12,13 +12,10 @@ jobs:
 
 workflows:
   version: 2
-  commit-workflow:
-    jobs:
-      - subscribe
   scheduled-workflow:
     triggers:
       - schedule:
-          cron: "0 7 * * *"
+          cron: "1 6 * * *"
           filters:
             branches:
               only:
