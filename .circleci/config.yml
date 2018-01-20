@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: node:8
     steps:
-      - run: node index.js
+      - run: npm run slack
 
 workflows:
   version: 2
