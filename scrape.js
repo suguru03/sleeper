@@ -1,7 +1,18 @@
 'use strict';
 
+const fs = require('fs');
+const path = require('path');
+
+const _ = require('lodash');
 const Aigle = require('aigle');
 const puppeteer = require('puppeteer');
+
+const history = fs.readFileSync(path.resolve(__dirname, 'history'), 'utf8');
+const historyMap = _.chain(history)
+  .trim()
+  .split('\n')
+  .transform((map, text) => map[text] = text, {})
+  .value();
 
 Object.assign(exports, { getArticles });
 
@@ -31,7 +42,7 @@ async function getArticles() {
   const iterator = async () => {
     const u = count ? `${url}&start=${count*10}` : url;
     const list = await getResult(u);
-    return list.filter(({ innerText }) => re.test(innerText));
+    return _.filter(list, ({ href, innerText }) => !historyMap[href] && re.test(innerText));
   }
   const result = await Aigle.doWhilst(iterator, tester);
   await browser.close();
