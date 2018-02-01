@@ -1,5 +1,5 @@
 {
-  "name": "i-just-jump-a",
+  "name": "sleeper",
   "version": "0.0.0",
   "private": true,
   "description": "",
@@ -18,12 +18,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/suguru03/i-just-jump-A.git"
+    "url": "git+https://github.com/suguru03/sleeper.git"
   },
   "author": "Suguru Motegi",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/suguru03/i-just-jump-A/issues"
+    "url": "https://github.com/suguru03/sleeper/issues"
   },
-  "homepage": "https://github.com/suguru03/i-just-jump-A#readme"
+  "homepage": "https://github.com/suguru03/sleeper#readme"
 }
