@@ -1,5 +1,7 @@
 'use strict';
 
+const { execSync } = require('child_process');
+
 const _ = require('lodash');
 const request = require('request-promise');
 
@@ -22,5 +24,6 @@ const { getArticles } = require('./scrape');
     body: { text },
     json: true
   };
-  await request(opts);
+  // await request(opts);
+  execSync(`sh ./pull-request.sh ${href}`);
 })();
