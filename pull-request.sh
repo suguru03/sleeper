@@ -7,6 +7,11 @@ HISTORY_FILENAME="history"
 HISTORY_PATH=$PWD/$HISTORY_FILENAME
 
 echo "Adding history... $1"
-# echo $1 >> $HISTORY_PATH
+echo $1 >> $HISTORY_PATH
 
-sudo dnf install hub
+git clone https://github.com/github/hub.git
+cd hub
+git fetch --tags
+git checkout v2.2.9
+./script/build
+which hub
