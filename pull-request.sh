@@ -39,6 +39,6 @@ hub config user.email $GITHUB_EMAIL
 hub config user.name $GITHUB_NAME
 hub add .
 hub checkout -b $GIT_BRANCH_NAME
-hub commit -m 'Update history'
+hub commit -m 'Update history [ci skip]'
 hub push origin $GIT_BRANCH_NAME
-hub pull-request
+hub pull-request -m "Update history from CI"
