@@ -3,12 +3,11 @@
 # Required environment variables
 # GIT_URL: target github ssh url
 GIT_BRANCH_NAME="circleci/update-history"
+GITHUB_FILE="./github_secret";
 HISTORY_FILENAME="history"
 HISTORY_PATH=$PWD/$HISTORY_FILENAME
 
-echo "Adding history... $1"
-echo $1 >> $HISTORY_PATH
-
+# setup hub
 which node
 which go
 which ruby
@@ -27,3 +26,19 @@ git checkout -b v2.2.9
 sudo make install
 ls -a
 which hub
+
+cd ..
+
+# setup git
+
+# create commit
+echo "Adding history... $1"
+echo $1 >> $HISTORY_PATH
+
+hub config user.email $GITHUB_EMAIL
+hub config user.name $GITHUB_NAME
+hub add .
+hub checkout -b $GIT_BRANCH_NAME
+hub commit -m 'Update history'
+hub push origin $GIT_BRANCH_NAME
+hub pull-request
