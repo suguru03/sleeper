@@ -31,14 +31,20 @@ cd ..
 
 # setup git
 
+hub config user.email $GITHUB_EMAIL
+hub config user.name $GITHUB_NAME
+hub fetch origin
+{
+  hub checkout -b $GIT_BRANCH_NAME origin/$GIT_BRANCH_NAME
+} || {
+  hub checkout -b $GIT_BRANCH_NAME
+}
+
 # create commit
 echo "Adding history... $1"
 echo $1 >> $HISTORY_PATH
 
-hub config user.email $GITHUB_EMAIL
-hub config user.name $GITHUB_NAME
 hub add .
-hub checkout -b $GIT_BRANCH_NAME
 hub commit -m 'Update history [ci skip]'
 hub push origin $GIT_BRANCH_NAME
 hub pull-request -m "Update history from CI"
