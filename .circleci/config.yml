@@ -6,7 +6,7 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends apt-utils && curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - && sudo apt-get install -y nodejs && sudo apt-get install ruby-full && sudo gem install bundle && sudo apt-get install groff && sudo apt-get install bsdmainutils
+      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends apt-utils && curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - && sudo apt-get install -y nodejs
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}

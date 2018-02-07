@@ -7,6 +7,11 @@ GITHUB_FILE="./github_secret";
 HISTORY_FILENAME="history"
 HISTORY_PATH=$PWD/$HISTORY_FILENAME
 
+sudo apt-get install ruby-full
+sudo gem install bundle
+sudo apt-get install groff
+sudo apt-get install bsdmainutils
+
 # setup hub
 which node
 which go
