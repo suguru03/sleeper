@@ -22,9 +22,6 @@ jobs:
 
 workflows:
   version: 2
-  commit-workflow:
-    jobs:
-      - subscribe
   scheduled-workflow:
     triggers:
       - schedule:
