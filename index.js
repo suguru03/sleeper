@@ -28,5 +28,5 @@ const { getArticles } = require('./scrape');
   await request(opts);
   const filepath = path.resolve(__dirname, 'history');
   const file = fs.readFileSync(filepath, 'utf8');
-  fs.writeFileSync(filepath, `${file}${href}`);
+  fs.writeFileSync(filepath, `${file}${href}\n`);
 })();
