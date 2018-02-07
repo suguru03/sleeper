@@ -7,22 +7,13 @@ GITHUB_FILE="./github_secret";
 HISTORY_FILENAME="history"
 HISTORY_PATH=$PWD/$HISTORY_FILENAME
 
+# ruby
 sudo apt-get install ruby-full
 sudo gem install bundle
-sudo apt-get install groff
-sudo apt-get install bsdmainutils
 
 # setup hub
-which node
-which go
-which ruby
-node -v
-npm -v
-go version
-ruby -v
-
+sudo apt-get install groff bsdmainutils
 sudo ln -s /usr/local/go/bin/go /usr/bin/go
-sudo which go
 
 git clone https://github.com/github/hub.git
 cd hub
@@ -34,8 +25,7 @@ which hub
 
 cd ..
 
-# setup git
-
+# setup git + hub
 hub config user.email $GITHUB_EMAIL
 hub config user.name $GITHUB_NAME
 hub fetch origin
@@ -46,10 +36,7 @@ hub fetch origin
 }
 
 # create commit
-echo "Adding history... $1"
-echo $1 >> $HISTORY_PATH
-
-hub add .
-hub commit -m 'Update history [ci skip]'
-hub push origin $GIT_BRANCH_NAME
-hub pull-request -m "Update history from CI"
+hub add $HISTORY_FILENAME
+hub commit -m 'Update history by Circle CI [ci skip]'
+hub push origin $GIT_BRANCH_NAME -f
+hub pull-request -m "Update history by Circle CI"
