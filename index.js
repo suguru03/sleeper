@@ -1,6 +1,7 @@
 'use strict';
 
-const { execSync } = require('child_process');
+const fs = require('fs');
+const path = require('path');
 
 const _ = require('lodash');
 const request = require('request-promise');
@@ -24,6 +25,8 @@ const { getArticles } = require('./scrape');
     body: { text },
     json: true
   };
-  // await request(opts);
-  execSync(`sh ./pull-request.sh ${href}`);
+  await request(opts);
+  const filepath = path.resolve(__dirname, 'history');
+  const file = fs.readFileSync(filepath, 'utf8');
+  fs.writeFileSync(filepath, `${file}${href}`);
 })();
