@@ -1,5 +1,12 @@
 version: 2
 jobs:
+  test:
+    docker:
+      - image: eroadltd/ubuntu-git-hub
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: ./pull-request.sh
   subscribe:
     docker:
       - image: circleci/golang:1.9.3
@@ -22,6 +29,9 @@ jobs:
 
 workflows:
   version: 2
+  common:
+    jobs:
+      - test
   scheduled-workflow:
     triggers:
       - schedule:
