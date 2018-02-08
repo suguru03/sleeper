@@ -7,23 +7,7 @@ GITHUB_FILE="./github_secret";
 HISTORY_FILENAME="history"
 HISTORY_PATH=$PWD/$HISTORY_FILENAME
 
-# ruby
-sudo apt-get install ruby-full
-sudo gem install bundle
-
-# setup hub
-sudo apt-get install groff bsdmainutils
-sudo ln -s /usr/local/go/bin/go /usr/bin/go
-
-git clone https://github.com/github/hub.git
-cd hub
-git fetch --tags
-git checkout -b v2.2.9
-sudo make install
-ls -a
-which hub
-
-cd ..
+echo "Creating pull request..."
 
 # setup git + hub
 hub config user.email $GITHUB_EMAIL
