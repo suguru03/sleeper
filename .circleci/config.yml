@@ -18,7 +18,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: npm run slack
-      - run: ./pull-request.sh
+      - run: ./.circleci/push.sh
 
 workflows:
   version: 2
