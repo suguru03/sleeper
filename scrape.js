@@ -38,10 +38,11 @@ async function getArticles() {
 
   // set logal storage
   let count = 0;
-  const tester = list => !list.length && ++count < 1;
+  const tester = list => !list.length && ++count < 10;
   const iterator = async () => {
     const u = count ? `${url}&start=${count*10}` : url;
     const list = await getResult(u);
+    console.log(`page:${count}\n`, _.map(list, 'innerText'));
     return _.filter(list, ({ href, innerText }) => !historyMap[href] && re.test(innerText));
   }
   const result = await Aigle.doWhilst(iterator, tester);
