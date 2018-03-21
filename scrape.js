@@ -43,7 +43,8 @@ async function getArticles() {
     const u = count ? `${url}&start=${count*10}` : url;
     const list = await getResult(u);
     console.log(`page:${count}\n`, _.map(list, 'innerText'));
-    return _.filter(list, ({ href, innerText }) => !historyMap[href] && re.test(innerText));
+    // return _.filter(list, ({ href, innerText }) => !historyMap[href] && re.test(innerText));
+    return _.filter(list, ({ href }) => !historyMap[href]);
   }
   const result = await Aigle.doWhilst(iterator, tester);
   await browser.close();
