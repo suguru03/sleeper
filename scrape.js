@@ -43,8 +43,7 @@ async function getArticles() {
     const u = count ? `${url}&start=${count*10}` : url;
     const list = await getResult(u);
     console.log(`page:${count}\n`, _.map(list, 'innerText'));
-    // return _.filter(list, ({ href, innerText }) => !historyMap[href] && re.test(innerText));
-    return _.filter(list, ({ href }) => !historyMap[href]);
+    return _.filter(list, ({ href, innerText }) => !historyMap[href] && re.test(innerText));
   }
   const result = await Aigle.doWhilst(iterator, tester);
   await browser.close();
@@ -54,11 +53,12 @@ async function getArticles() {
   async function getResult(url) {
     await page.goto(url);
     return await page.evaluate(() => {
-      const nodeList = document.querySelectorAll('._PMs');
+      const links = document.querySelectorAll('.top');
+      const texts = document.querySelectorAll('h3');
       const result = [];
-      nodeList.forEach(({ href, innerText }) => result.push({
+      links.forEach(({ href }, i) => result.push({
         href,
-        innerText
+        innerText: texts[i].innerText
       }));
       return result;
     });
